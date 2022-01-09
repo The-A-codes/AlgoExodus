@@ -1,5 +1,6 @@
 import './PasswordGenerator.css';
 import refresh from '../../assets/icons/refresh.svg';
+import info from '../../assets/icons/info.svg';
 import checked from '../../assets/icons/checked.png';
 import unchecked from '../../assets/icons/unchecked.png';
 import { useState, useEffect } from 'react';
@@ -15,7 +16,17 @@ const PasswordGenerator = () => {
     const [ sequentialChar, setSequentialChar ] = useState(false);
     const [ stringToInclude, setStringToInclude ] = useState('');
     const [ passwordLength, setpasswordLength ] = useState(8);
-
+    const infoMessages = [
+      "Numbers Like 123456... Will Be Included",
+      "Lowercase Characters Like abcd... Will Be Included",
+      "Uppercase Characters Like ABCD... Will Be Included",
+      "Generated Password Will Start With A Letter Instead Of Symbol Or Number",
+      "Symbols Like !@#$%^&*()... Will Be Included",
+      "Don't use characters like i, I, 1, L, o, O, 0, etc",
+      "Same Character Won't Be Repeated More Than Once",
+      "Sequential Characters Won't Be Used Like 123, abc",
+      "Generated Password Will Contain The Input Name In Between", 
+    ];
     const handleChange = () => {
     // Yash code here
     }
@@ -40,36 +51,44 @@ const PasswordGenerator = () => {
                     <div className="option">
                         <img src={ numbers ? checked : unchecked } className='checked-unchecked' onClick={()=>setNumbers(!numbers)}/>
                         <h4>Inlcude Numbers</h4>
+                        <img src={info} className="info"/>
                     </div>
                     <div className="option">
                         <img src={ lowercase ? checked : unchecked } className='checked-unchecked' onClick={()=>setLowercase(!lowercase)}/>
                         <h4>Inlcude Lowercase Characters</h4>
+                        <img src={info} className="info"/>
                     </div>
                     <div className="option">
                         <img src={ uppercase ? checked : unchecked } className='checked-unchecked' onClick={()=>setUppercase(!uppercase)}/>
                         <h4>Inlcude Uppercase Characters</h4>
+                        <img src={info} className="info"/>
                     </div>
                     <div className="option">
                         <img src={ letterToBeginWith ? checked : unchecked } className='checked-unchecked' onClick={()=>setLetterToBeginWith(!letterToBeginWith)}/>
                         <h4>Begin With A Letter</h4>
+                        <img src={info} className="info"/>
                     </div>
                 </div>
                 <div className="card">
                     <div className="option">
                         <img src={ symbols ? checked : unchecked } className='checked-unchecked' onClick={()=>setSymbols(!symbols)}/>
                         <h4>Include Symbols</h4>
+                        <img src={info} className="info"/>
                     </div>
                     <div className="option">
                         <img src={ similarChar ? checked : unchecked } className='checked-unchecked' onClick={()=>setSimilarChar(!similarChar)}/>
                         <h4>No Similar Characters</h4>
+                        <img src={info} className="info"/>
                     </div>
                     <div className="option">
                         <img src={ duplicateChar ? checked : unchecked } className='checked-unchecked' onClick={()=>setDuplicateChar(!duplicateChar)}/>
                         <h4>No Duplicate Characters</h4>
+                        <img src={info} className="info"/>
                     </div>
                     <div className="option">
                         <img src={ sequentialChar ? checked : unchecked } className='checked-unchecked' onClick={()=>setSequentialChar(!sequentialChar)}/>
                         <h4>No Sequential Characters</h4>
+                        <img src={info} className="info"/>
                     </div>
                 </div>
             </div>
@@ -77,6 +96,7 @@ const PasswordGenerator = () => {
                 <div className="option">
                     <img src={ stringToInclude ? checked : unchecked } className='checked-unchecked' onClick={()=>setStringToInclude(!stringToInclude)}/>
                     <h4>Include Below Name</h4>
+                    <img src={info} className="info"/>
                 </div>
                 <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Name To Include In Password" className='input-text'/>
             </div>
