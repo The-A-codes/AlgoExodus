@@ -27,6 +27,7 @@ const PasswordGenerator = () => {
       "Sequential Characters Won't Be Used Like 123, abc",
       "Generated Password Will Contain The Input Name In Between", 
     ];
+
     const handleChange = () => {
     // Yash code here
     }
@@ -38,6 +39,24 @@ const PasswordGenerator = () => {
         const bulletPosition = (rangeSlider.value /rangeSlider.max);
         rangeBullet.style.left = (bulletPosition * 578) + "px";
     }
+
+    const outsideClick = () => {
+        const allModals = document.querySelectorAll('.pop-modal')
+        allModals.forEach(ele => {
+            ele.style['opacity'] = '0'
+        })
+    }
+
+    const showInfo = (event) => {
+        event.target.nextElementSibling.style['opacity'] = '1'
+    }
+
+    useEffect(()=>{
+        document.addEventListener('click', (event)=>{
+            const classList = event.target.classList.value;
+            !classList.includes('info') && !classList.includes('pop-modal') && outsideClick();
+        });
+    }, [])
 
     useEffect(()=>{
         handleChange();
@@ -51,44 +70,84 @@ const PasswordGenerator = () => {
                     <div className="option">
                         <img src={ numbers ? checked : unchecked } className='checked-unchecked' onClick={()=>setNumbers(!numbers)}/>
                         <h4>Inlcude Numbers</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="0" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[0]}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="option">
                         <img src={ lowercase ? checked : unchecked } className='checked-unchecked' onClick={()=>setLowercase(!lowercase)}/>
                         <h4>Inlcude Lowercase Characters</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="1" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[1]}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="option">
                         <img src={ uppercase ? checked : unchecked } className='checked-unchecked' onClick={()=>setUppercase(!uppercase)}/>
                         <h4>Inlcude Uppercase Characters</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="2" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[2]}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="option">
                         <img src={ letterToBeginWith ? checked : unchecked } className='checked-unchecked' onClick={()=>setLetterToBeginWith(!letterToBeginWith)}/>
                         <h4>Begin With A Letter</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="3" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[3]}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="card">
                     <div className="option">
                         <img src={ symbols ? checked : unchecked } className='checked-unchecked' onClick={()=>setSymbols(!symbols)}/>
                         <h4>Include Symbols</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="4" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[4]}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="option">
                         <img src={ similarChar ? checked : unchecked } className='checked-unchecked' onClick={()=>setSimilarChar(!similarChar)}/>
                         <h4>No Similar Characters</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="5" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[5]}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="option">
                         <img src={ duplicateChar ? checked : unchecked } className='checked-unchecked' onClick={()=>setDuplicateChar(!duplicateChar)}/>
                         <h4>No Duplicate Characters</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="6" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[6]}</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="option">
                         <img src={ sequentialChar ? checked : unchecked } className='checked-unchecked' onClick={()=>setSequentialChar(!sequentialChar)}/>
                         <h4>No Sequential Characters</h4>
-                        <img src={info} className="info"/>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="7" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[7]}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,7 +155,12 @@ const PasswordGenerator = () => {
                 <div className="option">
                     <img src={ stringToInclude ? checked : unchecked } className='checked-unchecked' onClick={()=>setStringToInclude(!stringToInclude)}/>
                     <h4>Include Below Name</h4>
-                    <img src={info} className="info"/>
+                    <div style={{position: 'relative'}} >
+                        <img src={info} className="info" data-id="8" onClick={event => showInfo(event)}/>
+                        <div className="pop-modal">
+                            <span>{infoMessages[8]}</span>
+                        </div>
+                    </div>
                 </div>
                 <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Name To Include In Password" className='input-text'/>
             </div>
