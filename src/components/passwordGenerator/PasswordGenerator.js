@@ -6,9 +6,9 @@ import unchecked from '../../assets/icons/unchecked.png';
 import { useState, useEffect } from 'react';
 
 const PasswordGenerator = () => {
-    const [ numbers, setNumbers ] = useState(false);
-    const [ lowercase, setLowercase ] = useState(false);
-    const [ uppercase, setUppercase ] = useState(false);
+    const [ numbers, setNumbers ] = useState(true);
+    const [ lowercase, setLowercase ] = useState(true);
+    const [ uppercase, setUppercase ] = useState(true);
     const [ letterToBeginWith, setLetterToBeginWith ] = useState(false);
     const [ symbols, setSymbols ] = useState(false);
     const [ similarChar, setSimilarChar ] = useState(false);
