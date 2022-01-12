@@ -43,18 +43,27 @@ const PasswordGenerator = () => {
     const outsideClick = () => {
         const allModals = document.querySelectorAll('.pop-modal')
         allModals.forEach(ele => {
-            ele.style['opacity'] = '0'
+            // ele.style['opacity'] = '0';
+            ele.style['display'] = 'none';
         })
     }
 
     const showInfo = (event) => {
-        event.target.nextElementSibling.style['opacity'] = '1'
+        // event.target.nextElementSibling.style['opacity'] = '1';
+        event.target.nextElementSibling.style['display'] = 'block';
     }
 
     useEffect(()=>{
         document.addEventListener('click', (event)=>{
             const classList = event.target.classList.value;
-            !classList.includes('info') && !classList.includes('pop-modal') && outsideClick();
+
+            if(!classList.includes('pop-modal')){
+                outsideClick();
+            }
+
+            if(classList.includes('info')){
+                showInfo(event)
+            }
         });
     }, [])
 
