@@ -1,5 +1,6 @@
 import './App.css';
 import PasswordGenerator from './components/passwordGenerator/PasswordGenerator.js';
+import PasswordGeneratorFAQ from './components/passwordGenerator/PasswordGeneratorFAQ.js';
 import Particles from "react-tsparticles";
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
         options={{
           background: {
             color: {
-              value: "#0d47a1",
+              value: "#000",
             },
           },
           fpsLimit: 24,
@@ -55,7 +56,7 @@ const App = () => {
           },
           particles: {
             color: {
-              value: "#ffffff",
+              value: "#FFFFFF",
             },
             links: {
               color: "#ffffff",
@@ -90,7 +91,7 @@ const App = () => {
             },
             size: {
               random: true,
-              value: 5,
+              value: 7,
             },
           },
           detectRetina: true,
@@ -98,6 +99,7 @@ const App = () => {
       />
       <div id="layout">
         <PasswordGenerator />
+        <PasswordGeneratorFAQ />
       </div>
     </>
   );

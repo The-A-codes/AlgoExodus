@@ -175,7 +175,7 @@ const PasswordGenerator = () => {
             <div className="out-option">
                 <div className="option">
                     <img src={ stringToInclude ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setStringToInclude, !stringToInclude)}/>
-                    <h4>Include Below Name</h4>
+                    <h4>Include Below Word</h4>
                     <div style={{position: 'relative'}} >
                         <img src={info} className="info" data-id="8" onClick={event => showInfo(event)}/>
                         <div className="pop-modal">
