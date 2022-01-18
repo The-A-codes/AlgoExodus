@@ -42,7 +42,7 @@ const App = () => {
               bubble: {
                 distance: 400,
                 duration: 2,
-                opacity: 0.8,
+                opacity: 1,
                 size: 40,
               },
               push: {
@@ -73,7 +73,7 @@ const App = () => {
               enable: true,
               outMode: "bounce",
               random: false,
-              speed: 1,
+              speed: 2,
               straight: false,
             },
             number: {
