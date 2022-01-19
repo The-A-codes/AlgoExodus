@@ -32,6 +32,22 @@ const PasswordGeneratorFAQ = () => {
         }
     ];
 
+    const tips = [
+        `Don’t use the same password across different accounts. `,
+        `Use different & strong passwords for every account. Take full benefit from our free tool : ) `,
+        `Never use passwords like these please ( Password!, 12345678a, qwerty, qwerty12345, letmein, football, iloveyou, yourname@birthyear e.g. ram@97 )`,
+        `Use a password that has at least 16 characters, and include every option given above, must select the include symbols option above.`,
+        `Do not use the names of your families, friends or pets in your passwords.`,
+        `Do not store your passwords in web browsers( FireFox, Chrome, Safari, Opera, IE, Microsoft Edge ) since all passwords saved in Web browsers can be revealed easily.`,
+        `Use a strong password generator to store all your passwords which can log you in with just a single click. <a href="https://keepass.info/download.html" target="_blank">(Take me to Download a safe password manager for me)<a>`,
+        `Never log in to important accounts on the computers of others, or when connected to a public Wi-Fi hotspot, Tor, free VPN or web proxy.`,
+        `It's recommended to change your passwords every 10 weeks.`,
+        `Turn on 2-step authentication whenever possible.`,
+        `Keep the operating systems and Web browsers of your devices up-to-date by installing the latest security update.`,
+        `Access important websites in private or incognito mode.`,
+        `Do not click the link in an email or SMS message, do not reset your passwords by clicking them, except that you are sure and know these messages are not fake.`,
+    ];
+
     const handleQuestionClick = (event) => {
         const parent = event.target.parentElement.parentElement;
         const answer = parent.querySelector('.answer');
@@ -70,6 +86,14 @@ const PasswordGeneratorFAQ = () => {
                         </div>
                 )
             }
+            <div className="tips-container center">
+                <h2>Tips</h2>
+                <ul>
+                    {
+                        tips.map(tip=><li><h3>{tip}</h3></li>)
+                    }
+                </ul>
+            </div>
         </div>
     );
 }
