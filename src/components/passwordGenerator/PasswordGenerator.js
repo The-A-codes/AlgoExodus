@@ -85,7 +85,8 @@ const PasswordGenerator = () => {
 
     return (
         <div id='container'>
-            <div style={{height: 'fit-content'}}><h1 className="title">Random Password Generator</h1></div>
+            <div style={{height: 'fit-content'}}><h1 className="title">ALGO EXODUS</h1></div>
+            <div style={{height: 'fit-content'}}><h2 className="title">Strongest Password Generator</h2></div>
             <div className="card-container">
                 <div className="card">
                     <div className="option">
