@@ -1,0 +1,65 @@
+.tip-container {
+    position: fixed;
+    height: fit-content;
+    width: fit-content;
+    background: white;
+    z-index: 9999;
+    color: black;   
+    display: flex;
+    top: 5%;
+    right: 1%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+    padding: 0;
+    flex-direction: column;
+}
+
+.active-tip {
+    padding: 0 1rem;
+    width: 300px;
+}
+
+.active-tip .tip-title-container .tip-title, .tip-container:hover .tip-title-container .tip-title {
+    opacity: 1;
+    width: fit-content;
+    padding: 0 1rem;
+}
+
+.active-tip .tip-text {
+    width: 300px;
+    height: fit-content;
+    padding: 1rem 0;
+    height: fit-content;
+}
+
+.tip-title {
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    color: black;
+}
+
+.tip-info {
+    padding: 0 0.5rem;
+    height: 100%;
+}
+
+.tip-text {
+    transition: height 0.3s ease-out, width 0.3s ease-out;
+    height: 0;
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+    color: black;
+}
+
+.tip-title-container {
+    height: 40px;
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+};

@@ -1,6 +1,7 @@
 import './App.css';
 import PasswordGenerator from './components/passwordGenerator/PasswordGenerator.js';
 import PasswordGeneratorFAQ from './components/passwordGenerator/PasswordGeneratorFAQ.js';
+import Tips from './components/passwordGenerator/Tips.js';
 import Particles from "react-tsparticles";
 
 const App = () => {
@@ -100,6 +101,7 @@ const App = () => {
       <div id="layout">
         <PasswordGenerator />
         <PasswordGeneratorFAQ />
+        <Tips />
       </div>
     </>
   );
