@@ -27,6 +27,11 @@
     padding: 0 1rem;
 }
 
+.active-tip .refresh-container .tip-refresh-icon, .active-tip .refresh-container .tip-refresh {
+    display: block;
+    padding: 0.25rem 0;
+}
+
 .active-tip .tip-text {
     width: 300px;
     height: fit-content;
@@ -54,6 +59,26 @@
     padding: 0;
     overflow: hidden;
     color: black;
+}
+
+.tip-refresh-icon {
+    height: 25px;
+    width: 25px;
+    margin: 0 1rem;
+    display: none;
+    overflow: hidden;
+}
+
+.tip-refresh {
+    display: none;
+    overflow: hidden;
+}
+
+.refresh-container {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    width: fit-content;
 }
 
 .tip-title-container {

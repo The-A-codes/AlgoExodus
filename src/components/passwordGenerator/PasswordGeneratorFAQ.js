@@ -63,7 +63,7 @@ const PasswordGeneratorFAQ = () => {
                                 <h3>{qa['answer']}</h3>
                                 <ul>
                                     {
-                                        qa['sub'].map(s_point=><li><h4>{s_point}</h4></li>)
+                                        qa['sub'].map((s_point, index)=><li key={`sub_point_${index}`}><h4>{s_point}</h4></li>)
                                     }
                                 </ul>
                             </div>
