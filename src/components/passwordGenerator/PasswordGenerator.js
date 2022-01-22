@@ -17,6 +17,7 @@ const PasswordGenerator = () => {
     const [ stringToInclude, setStringToInclude ] = useState('');
     const [ passwordLength, setpasswordLength ] = useState(8);
     const [ copied, setCopied ] = useState(false);
+    const [ passLen, setPassLen ] = useState(12)
     const infoMessages = [
       "Numbers Like 123456... Will Be Included",
       "Lowercase Characters Like abcd... Will Be Included",
@@ -44,14 +45,6 @@ const PasswordGenerator = () => {
         handleChange()
     }
 
-    const showSliderValue = () => {
-        const rangeSlider = document.getElementById("rs-range-line");
-        const rangeBullet = document.getElementById("rs-bullet");
-        rangeBullet.innerHTML = rangeSlider.value;
-        const bulletPosition = (rangeSlider.value /rangeSlider.max);
-        rangeBullet.style.left = (bulletPosition * 578) + "px";
-    }
-
     const outsideClick = () => {
         const allModals = document.querySelectorAll('.pop-modal')
         allModals.forEach(ele => {
@@ -63,6 +56,16 @@ const PasswordGenerator = () => {
     const showInfo = (event) => {
         // event.target.nextElementSibling.style['opacity'] = '1';
         event.target.nextElementSibling.style['display'] = 'block';
+    }
+
+    const sliderClickHandler = (value) => {
+        const newVal = passLen + value;
+        console.log(newVal)
+        if(newVal > 7 && newVal < 51)
+        {
+            setPassLen(newVal);
+            document.getElementById('passwordRange').value = newVal;
+        }
     }
 
     useEffect(()=>{
@@ -186,15 +189,14 @@ const PasswordGenerator = () => {
                 </div>
                 <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text'/>
             </div>
-            {/* <div className="slider-container">
-                <div className="range-slider">
-                    <span id="rs-bullet" class="rs-label">0</span>
-                    <input id="rs-range-line" onInput={()=>showSliderValue()} className="rs-range" type="range" value="0" min="0" max="50" />
-                </div>
-                <div className="box-minmax">
-                    <span>0</span><span>50</span>
-                </div>
-            </div> */}
+            <div className='slider-conatiner'>
+                <span style={{margin: 'auto', width: '160px'}}>{`Password Length: ${passLen}`}</span>
+                <>
+                    <div className='balls' onClick={()=>sliderClickHandler(-1)}>-</div>
+                        <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
+                    <div className='balls' onClick={()=>sliderClickHandler(1)}>+</div>
+                </>
+            </div>
             <div className="generated-pass-container">
                 <div className="gen-contain">
                     <input className="generated-password" placeholder="Generated Password Will Appear Here" readOnly />
