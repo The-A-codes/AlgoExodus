@@ -4,6 +4,7 @@ import info from '../../assets/icons/info.svg';
 import checked from '../../assets/icons/checked.png';
 import unchecked from '../../assets/icons/unchecked.png';
 import { useState, useEffect } from 'react';
+import baffle from 'baffle';
 
 const PasswordGenerator = () => {
     const [ numbers, setNumbers ] = useState(true);
@@ -17,11 +18,12 @@ const PasswordGenerator = () => {
     const [ stringToInclude, setStringToInclude ] = useState('');
     const [ passwordLength, setpasswordLength ] = useState(8);
     const [ copied, setCopied ] = useState(false);
-    const [ passLen, setPassLen ] = useState(12)
+    const [ passLen, setPassLen ] = useState(12);
+    const text = baffle('.generated-password');
     const infoMessages = [
       "Numbers Like 123456... Will Be Included",
       "Lowercase Characters Like abcd... Will Be Included",
-      "Uppercase Characters Like ABCD... Will Be Included",
+      "Uppercase Characters Like ABCD... Will Be Includ ed",
       "Generated Password Will Start With A Letter Instead Of Symbol Or Number",
       "Symbols Like !@#$%^&*()... Will Be Included",
       "Don't use characters like i, I, 1, L, o, O, 0, etc",
@@ -36,8 +38,28 @@ const PasswordGenerator = () => {
     }
 
     const handleChange = () => {
+        const randomStrign = 'GAKJAHKJHD%A$C%AS*&^SC&AS$C^%AISGCIUYASTGCIASRTICUTASYCASOUYCA^YSCOU!@&U()UFUHHCDHIODSYIF*C&^DSY*C%T&DSTYCUYDOSUYCODTUYSC*^DST*(C%DRS%C$DS##C@#D$$C%*YDCAUISYHIGCAYOSDGCYUGYUAGC';
         setCopied(false);
+        const inputData = {
+            numbers: numbers,
+            lowercase: lowercase,
+            uppercase: uppercase,
+            letterToBeginWith: letterToBeginWith,
+            symbols: symbols,
+            similarChar: similarChar,
+            duplicateChar: duplicateChar,
+            sequentialChar: sequentialChar,
+            stringToInclude: stringToInclude,
+            passwordLength: passLen
+        };
         // Yash code here
+
+        text.set({
+            characters: randomStrign.slice(0, passLen),
+            speed:100
+        })
+        text.start();
+        text.reveal(1000);
     }
 
     const handleSelect = (callback, value) => {
@@ -48,13 +70,11 @@ const PasswordGenerator = () => {
     const outsideClick = () => {
         const allModals = document.querySelectorAll('.pop-modal')
         allModals.forEach(ele => {
-            // ele.style['opacity'] = '0';
             ele.style['display'] = 'none';
         })
     }
 
     const showInfo = (event) => {
-        // event.target.nextElementSibling.style['opacity'] = '1';
         event.target.nextElementSibling.style['display'] = 'block';
     }
 
@@ -190,16 +210,18 @@ const PasswordGenerator = () => {
                 <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text'/>
             </div>
             <div className='slider-conatiner'>
-                <span style={{margin: 'auto', width: '160px'}}>{`Password Length: ${passLen}`}</span>
-                <>
-                    <div className='balls' onClick={()=>sliderClickHandler(-1)}>-</div>
+                <span style={{margin: '1rem 0', width: '160px', alignSelf: 'center'}}>{`Password Length: ${passLen}`}</span>
+                <div className='slider-bar-container' style={{margin: '1rem 0'}}>
+                    <div className='balls' onClick={()=>sliderClickHandler(-1)}><h3 className='balls-text'>-</h3></div>
                         <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
-                    <div className='balls' onClick={()=>sliderClickHandler(1)}>+</div>
-                </>
+                    <div className='balls' onClick={()=>sliderClickHandler(1)}><h3 className='balls-text'>+</h3></div>
+                </div>
             </div>
             <div className="generated-pass-container">
                 <div className="gen-contain">
-                    <input className="generated-password" placeholder="Generated Password Will Appear Here" readOnly />
+                    <div id="generatedPassword" className="generated-password" placeholder="Generated Password Will Appear Here" readOnly>
+                        Show Generated Password
+                    </div>
                     <div className="refresh-icon-container">
                         {/* <img src={refresh} className="refresh-icon" tabIndex='1'/> */}
                     </div>

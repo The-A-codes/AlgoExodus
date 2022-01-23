@@ -48,15 +48,15 @@ const PasswordGeneratorFAQ = () => {
 
     return (
         <div style={{width: "100%", flexDirection: 'column'}} className="center">
-            <h1 className="heading center" loading="lazy" style={{height: '100px'}}>Things You Must Know</h1>
+            <h1 className="heading center things-faq" style={{height: '100px'}}>Things You Must Know</h1>
             {
                 qas.map((qa,index)=>
-                        <div className="heading center question" key={`question_${index}`}style={{height: 'fit-content'}}>
+                        <div className="questions-heading heading center question" key={`question_${index}`}style={{height: 'fit-content'}}>
                             <div className="center" style={{padding: '0 2rem'}}>
                                 <div className="question-heading" onClick={(event)=>handleQuestionClick(event)}/>
                                 <h2>{qa['question']}</h2>
                                 <div className="drop-arrow center">
-                                    <img src={arrow} className="arrow"/>
+                                    <h3 className='balls-text'>+</h3>
                                 </div>
                             </div>
                             <div className="answer center">
