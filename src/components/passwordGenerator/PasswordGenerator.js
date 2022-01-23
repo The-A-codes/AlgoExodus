@@ -18,9 +18,9 @@ const PasswordGenerator = () => {
     const [ duplicateChar, setDuplicateChar ] = useState(false);
     const [ sequentialChar, setSequentialChar ] = useState(false);
     const [ stringToInclude, setStringToInclude ] = useState('');
-    const [ passwordLength, setpasswordLength ] = useState(8);
     const [ copied, setCopied ] = useState(false);
     const [ passLen, setPassLen ] = useState(12);
+    const [ generatedPass, setGeneratedPass ] = useState('Show Generated Password');
     const text = baffle('.generated-password');
     const infoMessages = [
       "Numbers Like 123456... Will Be Included",
@@ -36,11 +36,16 @@ const PasswordGenerator = () => {
 
     const handleCopy = () => {
         setCopied(true);
+        navigator.clipboard.writeText(generatedPass).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+        });
         //Paste the code to copy the password to clipboard here
     }
 
     const handleChange = () => {
-        const randomStrign = 'GAKJAHKJHD%A$C%AS*&^SC&AS$C^%AISGCIUYASTGCIASRTICUTASYCASOUYCA^YSCOU!@&U()UFUHHCDHIODSYIF*C&^DSY*C%T&DSTYCUYDOSUYCODTUYSC*^DST*(C%DRS%C$DS##C@#D$$C%*YDCAUISYHIGCAYOSDGCYUGYUAGC';
+        const randomStrign = 'Show Generated Password';
         setCopied(false);
         const inputData = {
             numbers: numbers,
@@ -54,14 +59,14 @@ const PasswordGenerator = () => {
             stringToInclude: stringToInclude,
             passwordLength: passLen
         };
-        // Yash code here
-
+        // const resultedData = myPasswordGenerator(inputData);
         text.set({
             characters: randomStrign.slice(0, passLen),
             speed:100
         })
         text.start();
         text.reveal(1000);
+        setGeneratedPass(generatedPass);
     }
 
     const handleSelect = (callback, value) => {
@@ -74,6 +79,16 @@ const PasswordGenerator = () => {
         allModals.forEach(ele => {
             ele.style['display'] = 'none';
         })
+    }
+
+    const onWordChange = (event) => {
+        const wordLength = event.target.value.length;
+        const allowedLength = Math.round(passLen/3);
+
+        document.getElementById('limitReachedMessage').style['opacity'] = '0';
+        if(wordLength >= allowedLength) {
+            document.getElementById('limitReachedMessage').style['opacity'] = '1';
+        }
     }
 
     const showInfo = (event) => {
@@ -106,7 +121,7 @@ const PasswordGenerator = () => {
 
     useEffect(()=>{
         handleChange();
-    }, [numbers, lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, passwordLength]);
+    }, [numbers, lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, passLen]);
 
     return (
         <div id='container'>
@@ -209,7 +224,8 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                 </div>
-                <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text'/>
+                <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
+                { <span id="limitReachedMessage">It looks like you reached the word limit. Increase the password length to increase the word limit.</span> }
             </div>
             <div className='slider-conatiner'>
                 <span style={{margin: '1rem 0', width: '160px', alignSelf: 'center'}}>{`Password Length: ${passLen}`}</span>
@@ -226,10 +242,10 @@ const PasswordGenerator = () => {
             <div className="generated-pass-container">
                 <div className="gen-contain">
                     <div id="generatedPassword" className="generated-password" placeholder="Generated Password Will Appear Here" readOnly>
-                        Show Generated Password
+                        {/* { generatedPass && 'Show Generated Password'} */}
+                        {generatedPass}
                     </div>
                     <div className="refresh-icon-container">
-                        {/* <img src={refresh} className="refresh-icon" tabIndex='1'/> */}
                     </div>
                 </div>
                 <div className="copy-button" onClick={()=>handleCopy()}>
