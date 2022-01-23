@@ -224,7 +224,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                 </div>
-                <input type="text" disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
+                <input type="text" maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
                 { <span id="limitReachedMessage">It looks like you reached the word limit. Increase the password length to increase the word limit.</span> }
             </div>
             <div className='slider-conatiner'>
