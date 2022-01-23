@@ -1,5 +1,7 @@
 import './PasswordGenerator.css';
 import refresh from '../../assets/icons/refresh.svg';
+import plusIcon from '../../assets/icons/plus.svg';
+import minusIcon from '../../assets/icons/minus.svg';
 import info from '../../assets/icons/info.svg';
 import checked from '../../assets/icons/checked.png';
 import unchecked from '../../assets/icons/unchecked.png';
@@ -80,7 +82,7 @@ const PasswordGenerator = () => {
 
     const sliderClickHandler = (value) => {
         const newVal = passLen + value;
-        console.log(newVal)
+
         if(newVal > 7 && newVal < 51)
         {
             setPassLen(newVal);
@@ -212,9 +214,13 @@ const PasswordGenerator = () => {
             <div className='slider-conatiner'>
                 <span style={{margin: '1rem 0', width: '160px', alignSelf: 'center'}}>{`Password Length: ${passLen}`}</span>
                 <div className='slider-bar-container' style={{margin: '1rem 0'}}>
-                    <div className='balls' onClick={()=>sliderClickHandler(-1)}><h3 className='balls-text'>-</h3></div>
-                        <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
-                    <div className='balls' onClick={()=>sliderClickHandler(1)}><h3 className='balls-text'>+</h3></div>
+                    <div className='balls' onClick={()=>sliderClickHandler(-1)}>
+                        <img src={minusIcon}/>
+                    </div>
+                    <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
+                    <div className='balls' onClick={()=>sliderClickHandler(1)}>
+                        <img src={plusIcon}/>
+                    </div>
                 </div>
             </div>
             <div className="generated-pass-container">

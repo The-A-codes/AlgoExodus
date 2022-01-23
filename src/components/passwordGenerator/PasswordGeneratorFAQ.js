@@ -1,5 +1,5 @@
 import './PasswordGeneratorFAQ.css';
-import arrow from '../../assets/icons/arrow.png';
+import plusIcon from '../../assets/icons/plus.svg';
 
 const PasswordGeneratorFAQ = () => {
 
@@ -56,7 +56,7 @@ const PasswordGeneratorFAQ = () => {
                                 <div className="question-heading" onClick={(event)=>handleQuestionClick(event)}/>
                                 <h2>{qa['question']}</h2>
                                 <div className="drop-arrow center">
-                                    <h3 className='balls-text'>+</h3>
+                                    <img src={plusIcon}/>
                                 </div>
                             </div>
                             <div className="answer center">
