@@ -22,7 +22,6 @@ const PasswordGenerator = () => {
     const [ copied, setCopied ] = useState(false);
     const [ passLen, setPassLen ] = useState(12);
     const [ generatedPass, setGeneratedPass ] = useState('Show Generated Password');
-    const text = baffle('.generated-password');
     const infoMessages = [
       "Numbers Like 123456... Will Be Included",
       "Lowercase Characters Like abcd... Will Be Included",
@@ -61,21 +60,20 @@ const PasswordGenerator = () => {
             passwordLength: passLen
         };
 
-        //Yash code goes here
+        //Yash code call or first function call goes here
         // Uncomment the below line having same function
         // const resultedData = myPasswordGenerator(inputData);
 
-        text.set({
+        const text = baffle('.generated-password', {
             characters: randomStrign,
-            speed:100
-        })
+            speed:100            
+        });
         text.start();
         text.reveal(1000);
-
         //After Yash code uncomment the below line
-        // setGeneratedPass(resultedData);
+        // text.text(text=>resultedData);
         //After Yash code comment the below line code
-        setGeneratedPass(generatedPass);
+        text.text(text=>generatedPass);
     }
 
     //Yash functions starts here
@@ -270,4 +268,3 @@ const PasswordGenerator = () => {
 }
 
 export default PasswordGenerator;
-
