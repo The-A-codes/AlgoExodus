@@ -7,6 +7,7 @@ import checked from '../../assets/icons/checked.png';
 import unchecked from '../../assets/icons/unchecked.png';
 import { useState, useEffect } from 'react';
 import baffle from 'baffle';
+import title from '../../assets/images/title.png';
 
 const PasswordGenerator = () => {
     const [ numbers, setNumbers ] = useState(true);
@@ -137,7 +138,7 @@ const PasswordGenerator = () => {
 
     return (
         <div id='container'>
-            <div style={{height: 'fit-content'}}><h1 className="title">ALGO EXODUS</h1></div>
+            <div className="logo-title" style={{height: 'fit-content'}}><img src={title}/></div>
             <div style={{height: 'fit-content'}}><h2 className="title">Strongest Password Generator</h2></div>
             <div className="card-container">
                 <div className="card">
