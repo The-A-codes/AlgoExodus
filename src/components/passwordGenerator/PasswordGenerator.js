@@ -59,15 +59,27 @@ const PasswordGenerator = () => {
             stringToInclude: stringToInclude,
             passwordLength: passLen
         };
+
+        //Yash code goes here
+        // Uncomment the below line having same function
         // const resultedData = myPasswordGenerator(inputData);
+
         text.set({
-            characters: randomStrign.slice(0, passLen),
+            characters: randomStrign,
             speed:100
         })
         text.start();
         text.reveal(1000);
+
+        //After Yash code uncomment the below line
+        // setGeneratedPass(resultedData);
+        //After Yash code comment the below line code
         setGeneratedPass(generatedPass);
     }
+
+    //Yash functions starts here
+
+    //Yash functions end here
 
     const handleSelect = (callback, value) => {
         callback(value)
