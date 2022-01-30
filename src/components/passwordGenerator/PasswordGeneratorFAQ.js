@@ -36,6 +36,8 @@ const PasswordGeneratorFAQ = () => {
         const parent = event.target.parentElement.parentElement;
         const answer = parent.querySelector('.answer');
         const arrow = parent.querySelector('.drop-arrow');
+
+        parent.classList.value.includes('shadow') ? parent.classList.remove('shadow') : parent.classList.add('shadow');
         if(arrow.classList.value.includes('rotate')) {
             arrow.classList.remove("rotate");
             answer.classList.remove('active');
