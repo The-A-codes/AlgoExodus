@@ -27,7 +27,7 @@ const PasswordGeneratorFAQ = () => {
         },
         {
             'question': 'Is the Algo Exodus - Strongest Password Generator safe to use?',
-            'answer': `Absolutely! Every single password you generate with Algo Exodus is generated locally at that time and nothing is saved or shared anywhere else. XYZ generates and forgets, that’s what his job is.`,
+            'answer': `Absolutely! Every single password you generate with Algo Exodus is generated locally at that time and nothing is saved or shared anywhere else. Algo Exodus generates and forgets, that’s what his job is.`,
             'sub': []
         }
     ];
