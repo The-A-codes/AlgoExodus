@@ -184,6 +184,16 @@ const PasswordGenerator = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="option in-option">
+                        <img src={ stringToInclude ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setStringToInclude, !stringToInclude)}/>
+                        <h4>Include Below Word</h4>
+                        <div style={{position: 'relative'}} >
+                            <img src={info} className="info" data-id="8" onClick={event => showInfo(event)}/>
+                            <div className="pop-modal">
+                                <span>{infoMessages[8]}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="card">
                     <div className="option">
@@ -226,6 +236,21 @@ const PasswordGenerator = () => {
                             </div>
                         </div>
                     </div>
+                    <input type="text" maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text in-option' onChange={(event)=>onWordChange(event)}/>
+                </div>
+                <div className="card">
+                    <div className='slider-conatiner'>
+                        <div className='slider-bar-container' style={{margin: '1rem 0'}}>
+                            <div className='balls' onClick={()=>sliderClickHandler(1)}>
+                                <img src={plusIcon}/>
+                            </div>
+                            <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
+                            <div className='balls' onClick={()=>sliderClickHandler(-1)}>
+                                <img src={minusIcon}/>
+                            </div>
+                        </div>
+                        <span style={{margin: '1rem 0', width: '160px', alignSelf: 'center'}}>{`Password Length: ${passLen}`}</span>
+                    </div>
                 </div>
             </div>
             <div className="out-option">
@@ -240,9 +265,11 @@ const PasswordGenerator = () => {
                     </div>
                 </div>
                 <input type="text" maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
-                { <span id="limitReachedMessage">It looks like you reached the word limit. Increase the password length to increase the word limit.</span> }
             </div>
-            <div className='slider-conatiner'>
+            { 
+                <span id="limitReachedMessage">It looks like you reached the word limit. Increase the password length to increase the word limit.</span>
+            }
+            <div className='slider-conatiner out-slider'>
                 <span style={{margin: '1rem 0', width: '160px', alignSelf: 'center'}}>{`Password Length: ${passLen}`}</span>
                 <div className='slider-bar-container' style={{margin: '1rem 0'}}>
                     <div className='balls' onClick={()=>sliderClickHandler(-1)}>
