@@ -145,7 +145,7 @@ const PasswordGenerator = () => {
             <div className="card-container">
                 <div className="card">
                     <div className="option">
-                        <img src={ numbers ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setNumbers, !numbers)}/>
+                        <img src={ numbers ? checked : unchecked } className={`checked-unchecked ${ numbers && 'checked-img'}`} onClick={()=>handleSelect(setNumbers, !numbers)}/>
                         <h4>Inlcude Numbers</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="0" onClick={event => showInfo(event)}/>
@@ -155,7 +155,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option">
-                        <img src={ lowercase ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setLowercase, !lowercase)}/>
+                        <img src={ lowercase ? checked : unchecked } className={`checked-unchecked ${ lowercase && 'checked-img'}`} onClick={()=>handleSelect(setLowercase, !lowercase)}/>
                         <h4>Inlcude Lowercase Characters</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="1" onClick={event => showInfo(event)}/>
@@ -165,7 +165,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option">
-                        <img src={ uppercase ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setUppercase, !uppercase)}/>
+                        <img src={ uppercase ? checked : unchecked } className={`checked-unchecked ${ uppercase && 'checked-img'}`} onClick={()=>handleSelect(setUppercase, !uppercase)}/>
                         <h4>Inlcude Uppercase Characters</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="2" onClick={event => showInfo(event)}/>
@@ -175,7 +175,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option">
-                        <img src={ letterToBeginWith ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setLetterToBeginWith, !letterToBeginWith)}/>
+                        <img src={ letterToBeginWith ? checked : unchecked } className={`checked-unchecked ${ letterToBeginWith && 'checked-img'}`} onClick={()=>handleSelect(setLetterToBeginWith, !letterToBeginWith)}/>
                         <h4>Begin With A Letter</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="3" onClick={event => showInfo(event)}/>
@@ -185,7 +185,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option in-option">
-                        <img src={ stringToInclude ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setStringToInclude, !stringToInclude)}/>
+                        <img src={ stringToInclude ? checked : unchecked } className={`checked-unchecked ${ stringToInclude && 'checked-img'}`} onClick={()=>handleSelect(setStringToInclude, !stringToInclude)}/>
                         <h4>Include Below Word</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="8" onClick={event => showInfo(event)}/>
@@ -197,7 +197,7 @@ const PasswordGenerator = () => {
                 </div>
                 <div className="card">
                     <div className="option">
-                        <img src={ symbols ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setSymbols, !symbols)}/>
+                        <img src={ symbols ? checked : unchecked } className={`checked-unchecked ${ symbols && 'checked-img'}`} onClick={()=>handleSelect(setSymbols, !symbols)}/>
                         <h4>Include Symbols</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="4" onClick={event => showInfo(event)}/>
@@ -207,7 +207,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option">
-                        <img src={ similarChar ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setSimilarChar, !similarChar)}/>
+                        <img src={ similarChar ? checked : unchecked } className={`checked-unchecked ${ similarChar && 'checked-img'}`} onClick={()=>handleSelect(setSimilarChar, !similarChar)}/>
                         <h4>No Similar Characters</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="5" onClick={event => showInfo(event)}/>
@@ -217,7 +217,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option">
-                        <img src={ duplicateChar ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setDuplicateChar, !duplicateChar)}/>
+                        <img src={ duplicateChar ? checked : unchecked } className={`checked-unchecked ${ duplicateChar && 'checked-img'}`} onClick={()=>handleSelect(setDuplicateChar, !duplicateChar)}/>
                         <h4>No Duplicate Characters</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="6" onClick={event => showInfo(event)}/>
@@ -227,7 +227,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                     <div className="option">
-                        <img src={ sequentialChar ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setSequentialChar, !sequentialChar)}/>
+                        <img src={ sequentialChar ? checked : unchecked } className={`checked-unchecked ${ sequentialChar && 'checked-img'}`} onClick={()=>handleSelect(setSequentialChar, !sequentialChar)}/>
                         <h4>No Sequential Characters</h4>
                         <div style={{position: 'relative'}} >
                             <img src={info} className="info" data-id="7" onClick={event => showInfo(event)}/>
@@ -255,7 +255,7 @@ const PasswordGenerator = () => {
             </div>
             <div className="out-option">
                 <div className="option">
-                    <img src={ stringToInclude ? checked : unchecked } className='checked-unchecked' onClick={()=>handleSelect(setStringToInclude, !stringToInclude)}/>
+                    <img src={ stringToInclude ? checked : unchecked } className={`checked-unchecked ${ stringToInclude && 'checked-img'}`} onClick={()=>handleSelect(setStringToInclude, !stringToInclude)}/>
                     <h4>Include Below Word</h4>
                     <div style={{position: 'relative'}} >
                         <img src={info} className="info" data-id="8" onClick={event => showInfo(event)}/>
