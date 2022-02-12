@@ -44,20 +44,9 @@ const PasswordGenerator = () => {
     let CountLowerCaseLetters = 0;
     let CountNumbers = 0;
     let passchartext = "";
-    const myPasswordGenerator = (resultData) => {
-        return myPasswordGenerator(resultData.passwordLength
-        , resultData.numbers
-        , resultData.lowercase
-        , resultData.uppercase
-        , resultData.letterToBeginWith
-        , resultData.symbols
-        , resultData.similarChar
-        , resultData.duplicateChar
-        , resultData.sequentialChar
-        , resultData.stringToInclude
-        , resultData.refreshed );
-    }
-    const myPasswordGenerator = (passwordLength,numbers,lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, refreshed ) => {
+    
+    const myPasswordGenerator = ( inputData ) => {
+        let { passwordLength,numbers,lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, refreshed } = inputData;
         //var validated = validatePasswordGenerator(passwordLength,numbers,lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, refreshed); 
         //alert(passwordLength);
         if(refreshed){ IsReset(); }
@@ -196,6 +185,7 @@ const PasswordGenerator = () => {
     const selectRandomCharacterType = (passwordLength) => {
         var IsNumbers, IsUpper, IsLower, IsSymbols ;
         var temp = passwordLength;
+        let num = 0;
         do{ 
             IsNumbers = (CountNumbers > 0);
             IsUpper = (CountUpperCaseLetters > 0);
@@ -312,7 +302,6 @@ const PasswordGenerator = () => {
         text.start();
         text.reveal(1000);
         //After Yash code uncomment the below line
-        resultedData = myPasswordGenerator(inputData);
 		text.text(text=>resultedData);
         //After Yash code comment the below line code
         // text.text(text=>generatedPass);
