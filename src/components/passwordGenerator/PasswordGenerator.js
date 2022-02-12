@@ -39,231 +39,316 @@ const PasswordGenerator = () => {
 
     /**This file contains all scripts required for A-codes - Password Generator application**/
 
-    let CountSymbols = 0;
-    let CountUpperCaseLetters = 0;
-    let CountLowerCaseLetters = 0;
-    let CountNumbers = 0;
-    let passchartext = "";
+    // let CountSymbols = 0;
+    // let CountUpperCaseLetters = 0;
+    // let CountLowerCaseLetters = 0;
+    // let CountNumbers = 0;
+    // let passchartext = "";
     
-    const myPasswordGenerator = ( inputData ) => {
-        let { passwordLength,numbers,lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, refreshed } = inputData;
-        //var validated = validatePasswordGenerator(passwordLength,numbers,lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, refreshed); 
-        //alert(passwordLength);
-        if(refreshed){ IsReset(); }
-        passwordLength = 30;
-        //alert('1');
-        DistributeCharacterlength( passwordLength, numbers, lowercase, uppercase,symbols );
-        //alert("2");
+    // const myPasswordGenerator = ( inputData ) => {
+    //     const { passwordLength,numbers,lowercase, uppercase, letterToBeginWith, symbols, similarChar, duplicateChar, sequentialChar, stringToInclude, refreshed } = inputData;
+    //     refreshed && IsReset();
+    //     DistributeCharacterlength( passwordLength, numbers, lowercase, uppercase,symbols );
         
-        return Randomgenerator(passwordLength);
-    }
+    //     return Randomgenerator(passwordLength);
+    // }
 
-    const IsReset = () => {
-        //alert('refreshed');
-        CountSymbols = 0;
-        CountUpperCaseLetters = 0;
-        CountLowerCaseLetters = 0;
-        CountNumbers = 0;
-    }
+    // const IsReset = () => {
+    //     //alert('refreshed');
+    //     CountSymbols = 0;
+    //     CountUpperCaseLetters = 0;
+    //     CountLowerCaseLetters = 0;
+    //     CountNumbers = 0;
+    // }
 
-    const IsSymbol = (num) => {
-        var result = false;
-        if(	(num>=33 && num<=47)
-            ||(num>=58 && num<=64)
-            ||(num>=91 && num<=96)
-            ||(num>=123 && num<=126)
-            )
-        {
-            result = true;
-        }
-        return result;
-    }
+    // const IsSymbol = (num) => {
+    //     var result = false;
+    //     if(	(num>=33 && num<=47)
+    //         ||(num>=58 && num<=64)
+    //         ||(num>=91 && num<=96)
+    //         ||(num>=123 && num<=126)
+    //         )
+    //     {
+    //         result = true;
+    //     }
+    //     return result;
+    // }
 
-    const IsNumber = (num) => {
-        var result = false;
-        if(num >= 48 && num<=57){
-            result = true;
-        }
-        return result;
-    }
+    // const IsNumber = (num) => {
+    //     var result = false;
+    //     if(num >= 48 && num<=57){
+    //         result = true;
+    //     }
+    //     return result;
+    // }
 
-    const IsUpperCaseLetter = (num) => {
-        var result = false;
-        if(num >= 65 && num<=90){
-            result = true;
-        }
-        return result;
-    }
+    // const IsUpperCaseLetter = (num) => {
+    //     var result = false;
+    //     if(num >= 65 && num<=90){
+    //         result = true;
+    //     }
+    //     return result;
+    // }
 
-    const IsLowerCaseLetter = (num) => {
-        var result = false;
-        if(num >= 97 && num<=122){
-            result = true;
-        }
-        return result;
-    }
+    // const IsLowerCaseLetter = (num) => {
+    //     var result = false;
+    //     if(num >= 97 && num<=122){
+    //         result = true;
+    //     }
+    //     return result;
+    // }
 
-    const IsLetter = (num) => {
-        return IsUpperCaseLetter(num)||IsLowerCaseLetter(num); 
-    }
+    // const IsLetter = (num) => {
+    //     return IsUpperCaseLetter(num)||IsLowerCaseLetter(num); 
+    // }
 
-    const DistributeCharacterlength = ( passwordLength, numbers, lowercase, uppercase,symbols ) => {
-        var parts = 0;
-        if(numbers) parts++;
-        if(lowercase)parts++; 
-        if(uppercase)parts++; 
-        if(symbols)  parts++;
-        var num = passwordLength/parts;
-        num = Math.floor(num);
-        var spare = passwordLength%parts;
+    // const DistributeCharacterlength = ( passwordLength, numbers, lowercase, uppercase,symbols ) => {
+    //     var parts = 0;
+    //     if(numbers) parts++;
+    //     if(lowercase)parts++; 
+    //     if(uppercase)parts++; 
+    //     if(symbols)  parts++;
+    //     var num = passwordLength/parts;
+    //     num = Math.floor(num);
+    //     var spare = passwordLength%parts;
         
-        //alert(num);
-        //alert(spare);
+    //     //alert(num);
+    //     //alert(spare);
         
-        if(symbols) CountSymbols = num;
-        if(numbers) CountNumbers = num;
-        if(lowercase) CountLowerCaseLetters = num;
-        if(uppercase) CountUpperCaseLetters = num;
+    //     if(symbols) CountSymbols = num;
+    //     if(numbers) CountNumbers = num;
+    //     if(lowercase) CountLowerCaseLetters = num;
+    //     if(uppercase) CountUpperCaseLetters = num;
         
-        if (spare>0) {
-            CountSymbols++;
-            spare--;
-        }
-        if (spare>0) {
-            CountNumbers++;
-            spare--;
-        }
-        if (spare>0) {
-            CountLowerCaseLetters++;
-            spare--;
-        }
-        //alert(CountSymbols,CountUpperCaseLetters );
-        //alert(CountNumbers);
-        //alert(CountLowerCaseLetters);
-        //alert(CountUpperCaseLetters );
+    //     if (spare>0) {
+    //         CountSymbols++;
+    //         spare--;
+    //     }
+    //     if (spare>0) {
+    //         CountNumbers++;
+    //         spare--;
+    //     }
+    //     if (spare>0) {
+    //         CountLowerCaseLetters++;
+    //         spare--;
+    //     }
+    //     //alert(CountSymbols,CountUpperCaseLetters );
+    //     //alert(CountNumbers);
+    //     //alert(CountLowerCaseLetters);
+    //     //alert(CountUpperCaseLetters );
         
         
-    }
+    // }
 
-    const getNumber = () =>{
-        var num = 0;
-        do{ num = (Math.random()*1000)% 127;}
-        while(!IsNumber(num));
-        return num;
-    }
-
-
-    const getLetter = () => {
-        var num = 0;
-        do{ num = (Math.random()*1000)% 127;}
-        while(!IsLetter(num));
-        return num;
-    }
-
-    const getUpperCaseLetter = () => {
-        var num = 0;
-        do{ num = (Math.random()*1000)% 127;}
-        while(!IsUpperCaseLetter(num));
-        return num;
-    }
-
-    const getLowerCaseLetter = () => {
-        var num = 0;
-        do{ num = (Math.random()*1000)% 127;}
-        while(!IsLowerCaseLetter(num));
-        return num;
-    }
+    // const getNumber = () =>{
+    //     var num = 0;
+    //     do{ num = (Math.random()*1000)% 127;}
+    //     while(!IsNumber(num));
+    //     return num;
+    // }
 
 
-    const getSymbols = () => {
-        var num = 0;
-        do{ num = (Math.random()*1000)% 127;}
-        while(!IsSymbol(num));
-        return num;
-    }
+    // const getLetter = () => {
+    //     var num = 0;
+    //     do{ num = (Math.random()*1000)% 127;}
+    //     while(!IsLetter(num));
+    //     return num;
+    // }
 
-    const selectRandomCharacterType = (passwordLength) => {
-        var IsNumbers, IsUpper, IsLower, IsSymbols ;
-        var temp = passwordLength;
-        let num = 0;
-        do{ 
-            IsNumbers = (CountNumbers > 0);
-            IsUpper = (CountUpperCaseLetters > 0);
-            IsLower = (CountLowerCaseLetters > 0);
-            IsSymbols = (CountSymbols > 0);
+    // const getUpperCaseLetter = () => {
+    //     var num = 0;
+    //     do{ num = (Math.random()*1000)% 127;}
+    //     while(!IsUpperCaseLetter(num));
+    //     return num;
+    // }
+
+    // const getLowerCaseLetter = () => {
+    //     var num = 0;
+    //     do{ num = (Math.random()*1000)% 127;}
+    //     while(!IsLowerCaseLetter(num));
+    //     return num;
+    // }
+
+
+    // const getSymbols = () => {
+    //     var num = 0;
+    //     do{ num = (Math.random()*1000)% 127;}
+    //     while(!IsSymbol(num));
+    //     return num;
+    // }
+
+    // const selectRandomCharacterType = (passwordLength) => {
+    //     var IsNumbers, IsUpper, IsLower, IsSymbols ;
+    //     var temp = passwordLength;
+    //     let num = 0;
+    //     do{ 
+    //         IsNumbers = (CountNumbers > 0);
+    //         IsUpper = (CountUpperCaseLetters > 0);
+    //         IsLower = (CountLowerCaseLetters > 0);
+    //         IsSymbols = (CountSymbols > 0);
             
-            var Temp_ascii_code = 0;
-            var tempturn  = 0;
-            tempturn = (IsNumbers)? tempturn + 1 : tempturn ;
-            tempturn = (IsUpper)? tempturn + 1 : tempturn ;
-            tempturn = (IsLower)? tempturn + 1 : tempturn ;
-            tempturn = (IsSymbols)? tempturn + 1 : tempturn ;
+    //         var Temp_ascii_code = 0;
+    //         var tempturn  = 0;
+    //         tempturn = (IsNumbers)? tempturn + 1 : tempturn ;
+    //         tempturn = (IsUpper)? tempturn + 1 : tempturn ;
+    //         tempturn = (IsLower)? tempturn + 1 : tempturn ;
+    //         tempturn = (IsSymbols)? tempturn + 1 : tempturn ;
             
-            do{
-                num = (Math.random()*1000)% tempturn;
+    //         do{
+    //             num = (Math.random()*1000)% tempturn;
                 
-                num = Math.floor(num); 
+    //             num = Math.floor(num); 
                 
-                num = ((!IsNumbers) && num == 0)? num + 1 : num ;
-                num = ((!IsUpper) && num == 1)? num + 1 : num ;
-                num = ((!IsLower) && num == 2)? num + 1 : num ;
-                num = ((!IsSymbols) && num == 3)? num + 1 : num ;
-            }
-            while(num == 4);
-            //alert(num);
+    //             num = ((!IsNumbers) && num == 0)? num + 1 : num ;
+    //             num = ((!IsUpper) && num == 1)? num + 1 : num ;
+    //             num = ((!IsLower) && num == 2)? num + 1 : num ;
+    //             num = ((!IsSymbols) && num == 3)? num + 1 : num ;
+    //         }
+    //         while(num == 4);
+    //         //alert(num);
             
-            switch(num){
-                case 0: 
-                    if(IsNumbers){
-                        Temp_ascii_code = getNumber();
-                        CountNumbers--;
-                        var text = String.fromCharCode(Temp_ascii_code);
-                        passchartext = passchartext + text; 
-                        //alert(passchartext);
-                    }
-                    break;
-                case 1:
-                    if(IsUpper){
-                        Temp_ascii_code = getUpperCaseLetter();
-                        CountUpperCaseLetters--;
-                        var text = String.fromCharCode(Temp_ascii_code);
-                        passchartext = passchartext + text; 
-                        //alert(passchartext);
-                    } 
-                    break;
-                case 2:
-                    if(IsLower){							
-                        Temp_ascii_code = getLowerCaseLetter();
-                        CountLowerCaseLetters--;
-                        var text = String.fromCharCode(Temp_ascii_code);
-                        passchartext = passchartext + text; 
-                        //alert(passchartext);
-                    } 
-                    break;
-                case 3:
-                    if(IsSymbols){
-                        Temp_ascii_code = getSymbols();
-                        CountSymbols--;
-                        var text = String.fromCharCode(Temp_ascii_code);
-                        passchartext = passchartext + text; 
-                        //alert(passchartext);
-                    }
-                    break;
-            }
-        }
-        while(IsNumbers||IsUpper ||IsLower ||IsSymbols);
-    }
+    //         switch(num){
+    //             case 0: 
+    //                 if(IsNumbers){
+    //                     Temp_ascii_code = getNumber();
+    //                     CountNumbers--;
+    //                     var text = String.fromCharCode(Temp_ascii_code);
+    //                     passchartext = passchartext + text; 
+    //                     //alert(passchartext);
+    //                 }
+    //                 break;
+    //             case 1:
+    //                 if(IsUpper){
+    //                     Temp_ascii_code = getUpperCaseLetter();
+    //                     CountUpperCaseLetters--;
+    //                     var text = String.fromCharCode(Temp_ascii_code);
+    //                     passchartext = passchartext + text; 
+    //                     //alert(passchartext);
+    //                 } 
+    //                 break;
+    //             case 2:
+    //                 if(IsLower){							
+    //                     Temp_ascii_code = getLowerCaseLetter();
+    //                     CountLowerCaseLetters--;
+    //                     var text = String.fromCharCode(Temp_ascii_code);
+    //                     passchartext = passchartext + text; 
+    //                     //alert(passchartext);
+    //                 } 
+    //                 break;
+    //             case 3:
+    //                 if(IsSymbols){
+    //                     Temp_ascii_code = getSymbols();
+    //                     CountSymbols--;
+    //                     var text = String.fromCharCode(Temp_ascii_code);
+    //                     passchartext = passchartext + text; 
+    //                     //alert(passchartext);
+    //                 }
+    //                 break;
+    //         }
+    //     }
+    //     while(IsNumbers||IsUpper ||IsLower ||IsSymbols);
+    // }
 
-    const Randomgenerator = (passwordLength) => {
-        var genratedpasswordLength = 0;
-        var ascii_code= 0;//Math.random()*1000;
-        selectRandomCharacterType(passwordLength);
-        var passlength = passchartext.length;
-        passchartext = String(passchartext).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-        return passchartext + " Count : "+ passlength ;
-    }
+    // const Randomgenerator = (passwordLength) => {
+    //     var genratedpasswordLength = 0;
+    //     var ascii_code= 0;//Math.random()*1000;
+    //     selectRandomCharacterType(passwordLength);
+    //     var passlength = passchartext.length;
+    //     passchartext = String(passchartext).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+    //     return passchartext;
+    // }
 
     //code ends here
+
+
+    const myPasswordGenerator = () => {
+        const passwordLength = passLen;
+        const isStringIncluded = stringToInclude;
+        let calculatedLength = passwordLength;
+        let word = '';
+
+        if(isStringIncluded) {
+            word = document.getElementById('includedWord').value;
+            const wordLength = word.length;
+            calculatedLength = passwordLength - wordLength;
+        }
+        let generatedString = generateUniquePass(calculatedLength);
+        if(isStringIncluded) {
+            const position = Math.floor((Math.random() * (calculatedLength+1)));
+            generatedString = generatedString.slice(0, position) + word + generatedString.slice(position, calculatedLength);
+        }
+
+        return generatedString;
+    }
+
+    const genrateChar = () => {
+        const selected = numbers + uppercase + lowercase + symbols;
+        const optionsNumber = selected > 2 ? 4 : 2;
+        const charToAdd = Math.floor((Math.random() * optionsNumber));
+
+        switch (charToAdd) {
+            case 0:
+                //uppercase
+                return String.fromCharCode(65 + Math.floor((Math.random() * 26)));
+            case 1:
+                //symbols
+                const specialChars = `!@#$%^&*(){}[]~.<>/?:;'"|_-+=`;
+                return specialChars[Math.floor((Math.random() * specialChars.length))];
+            case 2:
+                return String.fromCharCode(97 + Math.floor((Math.random() * 26)));
+            case 3:
+                //numbers
+                return Math.floor((Math.random() * 9));
+            default:
+                return ''
+        }
+    }
+
+    const generateUniquePass = (calculatedLength, generatedString = '') => {
+        let length = calculatedLength;
+        let generatedPasswordString = '';
+
+        if(generatedString) {
+            generatedPasswordString = generatedString
+        }
+
+        while(length > 0) {
+            generatedPasswordString += genrateChar();
+            length -= 1;
+        }
+
+        //TODO: Pending condition for similarChar
+
+        if(duplicateChar) {
+            const oldLength = generatedPasswordString.length;
+            const updatedString = [...new Set(generatedPasswordString)].toString().replaceAll(',', '');
+            const updatedLength = oldLength - updatedString.length
+            if(updatedLength > 0) {
+                generatedPasswordString = generateUniquePass( updatedLength, updatedString);
+            }
+        }
+
+        if(sequentialChar) {
+            const aphaNumericString = '0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVQXYZ';
+            const strLength = generatedPasswordString.length;
+            for(let offset = 0; offset < strLength - 1; offset++ ) {
+                const chunk = generatedPasswordString.slice(offset, offset+1);
+                if(aphaNumericString.includes(chunk)) {
+                    const updatedString = generatedPasswordString.slice(0, offset) + generatedPasswordString.slice(offset+1, strLength);
+                    generatedPasswordString = generateUniquePass( 1, updatedString);
+                    break;
+                }
+            }
+        }
+
+        if(letterToBeginWith) {
+            const regExp = /[a-zA-Z]/g;
+            if(!regExp.test(generatedPasswordString[0])) {
+                generatedPasswordString = generateUniquePass( 1, generatedPasswordString.slice(1,generatedPasswordString.length) );
+            }
+        }
+        return generatedPasswordString;
+    }
 
     const handleCopy = () => {
         setCopied(true);
@@ -276,35 +361,17 @@ const PasswordGenerator = () => {
     }
 
     const handleChange = () => {
-        const randomStrign = 'Show Generated Password';
+        const randomString = 'Show Generated Password';
         setCopied(false);
-        const inputData = {
-            numbers: numbers,
-            lowercase: lowercase,
-            uppercase: uppercase,
-            letterToBeginWith: letterToBeginWith,
-            symbols: symbols,
-            similarChar: similarChar,
-            duplicateChar: duplicateChar,
-            sequentialChar: sequentialChar,
-            stringToInclude: stringToInclude,
-            passwordLength: passLen
-        };
-
-        //Yash code call or first function call goes here
-        // Uncomment the below line having same function
-        const resultedData = myPasswordGenerator(inputData);
-
+        const resultedData = myPasswordGenerator();
         const text = baffle('.generated-password', {
-            characters: randomStrign,
-            speed:100            
+            characters: randomString,
+            speed:100
         });
         text.start();
         text.reveal(1000);
-        //After Yash code uncomment the below line
-		text.text(text=>resultedData);
-        //After Yash code comment the below line code
-        // text.text(text=>generatedPass);
+        text.text(text=>resultedData);
+        setGeneratedPass(resultedData);
     }
 
     const handleSelect = (callback, value) => {
@@ -322,7 +389,7 @@ const PasswordGenerator = () => {
     const onWordChange = (event) => {
         const wordLength = event.target.value.length;
         const allowedLength = Math.round(passLen/3);
-
+        handleChange();
         document.getElementById('limitReachedMessage').style['opacity'] = '0';
         if(wordLength >= allowedLength) {
             document.getElementById('limitReachedMessage').style['opacity'] = '1';
@@ -344,6 +411,7 @@ const PasswordGenerator = () => {
     }
 
     useEffect(()=>{
+        handleChange();
         document.addEventListener('click', (event)=>{
             const classList = event.target.classList.value;
 
@@ -490,7 +558,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                 </div>
-                <input type="text" maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
+                <input type="text" id='includedWord' maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
             </div>
             { 
                 <span id="limitReachedMessage">It looks like you reached the word limit. Increase the password length to increase the word limit.</span>
