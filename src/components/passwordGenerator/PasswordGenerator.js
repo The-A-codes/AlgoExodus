@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import baffle from 'baffle';
 import title from '../../assets/images/title.png';
 import logo from '../../assets/images/site.png';
+import './main.js'; 
 
 const PasswordGenerator = () => {
     const [ numbers, setNumbers ] = useState(true);
@@ -63,7 +64,7 @@ const PasswordGenerator = () => {
 
         //Yash code call or first function call goes here
         // Uncomment the below line having same function
-        // const resultedData = myPasswordGenerator(inputData);
+        const resultedData = myPasswordGenerator(inputData);
 
         const text = baffle('.generated-password', {
             characters: randomStrign,
@@ -72,7 +73,8 @@ const PasswordGenerator = () => {
         text.start();
         text.reveal(1000);
         //After Yash code uncomment the below line
-        // text.text(text=>resultedData);
+        resultedData = myPasswordGenerator(inputData);
+		text.text(text=>resultedData);
         //After Yash code comment the below line code
         text.text(text=>generatedPass);
     }
