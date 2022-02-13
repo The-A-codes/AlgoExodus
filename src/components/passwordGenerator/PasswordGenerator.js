@@ -282,11 +282,16 @@ const PasswordGenerator = () => {
     }
 
     const genrateChar = () => {
-        const selected = numbers + uppercase + lowercase + symbols;
-        const optionsNumber = selected > 2 ? 4 : 2;
-        const charToAdd = Math.floor((Math.random() * optionsNumber));
+        const optionsArray = [];
+        uppercase && optionsArray.push(0)
+        symbols && optionsArray.push(1)
+        lowercase && optionsArray.push(2)
+        numbers && optionsArray.push(3)
 
-        switch (charToAdd) {
+        const charToAdd = Math.floor((Math.random() * optionsArray.length));
+        const selectedOption = optionsArray[charToAdd]
+
+        switch (selectedOption) {
             case 0:
                 //uppercase
                 return String.fromCharCode(65 + Math.floor((Math.random() * 26)));
@@ -295,6 +300,7 @@ const PasswordGenerator = () => {
                 const specialChars = `!@#$%^&*(){}[]~.<>/?:;'"|_-+=`;
                 return specialChars[Math.floor((Math.random() * specialChars.length))];
             case 2:
+                //lowercase
                 return String.fromCharCode(97 + Math.floor((Math.random() * 26)));
             case 3:
                 //numbers
