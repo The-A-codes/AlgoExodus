@@ -268,7 +268,7 @@ const PasswordGenerator = () => {
         let word = '';
 
         if(isStringIncluded) {
-            word = document.getElementById('includedWord').value;
+            word = document.getElementById('includedWord').value || document.getElementById('includedWordMobile').value;
             const wordLength = word.length;
             calculatedLength = passwordLength - wordLength;
         }
@@ -313,39 +313,44 @@ const PasswordGenerator = () => {
     const generateUniquePass = (calculatedLength, generatedString = '') => {
         let length = calculatedLength;
         let generatedPasswordString = '';
+        const word = document.getElementById('includedWord').value || document.getElementById('includedWordMobile').value;
 
         if(generatedString) {
             generatedPasswordString = generatedString
         }
 
         while(length > 0) {
-            generatedPasswordString += genrateChar();
+            const generatedChar = genrateChar();
+            if( (duplicateChar && generatedPasswordString.includes(generatedChar)) || (word && word.includes(generatedChar)) ) {
+                continue;
+            }
+            generatedPasswordString += generatedChar;
             length -= 1;
         }
 
         //TODO: Pending condition for similarChar
 
-        if(duplicateChar) {
-            const oldLength = generatedPasswordString.length;
-            const updatedString = [...new Set(generatedPasswordString)].toString().replaceAll(',', '');
-            const updatedLength = oldLength - updatedString.length
-            if(updatedLength > 0) {
-                generatedPasswordString = generateUniquePass( updatedLength, updatedString);
-            }
-        }
+        // if(duplicateChar) {
+        //     const oldLength = generatedPasswordString.length;
+        //     const updatedString = [...new Set(generatedPasswordString)].toString().replaceAll(',', '');
+        //     const updatedLength = oldLength - updatedString.length
+        //     if(updatedLength > 0) {
+        //         generatedPasswordString = generateUniquePass( updatedLength, updatedString);
+        //     }
+        // }
 
-        if(sequentialChar) {
-            const aphaNumericString = '0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVQXYZ';
-            const strLength = generatedPasswordString.length;
-            for(let offset = 0; offset < strLength - 1; offset++ ) {
-                const chunk = generatedPasswordString.slice(offset, offset+1);
-                if(aphaNumericString.includes(chunk)) {
-                    const updatedString = generatedPasswordString.slice(0, offset) + generatedPasswordString.slice(offset+1, strLength);
-                    generatedPasswordString = generateUniquePass( 1, updatedString);
-                    break;
-                }
-            }
-        }
+        // if(sequentialChar) {
+        //     const aphaNumericString = '0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVQXYZ';
+        //     const strLength = generatedPasswordString.length;
+        //     for(let offset = 0; offset < strLength - 1; offset++ ) {
+        //         const chunk = generatedPasswordString.slice(offset, offset+1);
+        //         if(aphaNumericString.includes(chunk)) {
+        //             const updatedString = generatedPasswordString.slice(0, offset) + generatedPasswordString.slice(offset+1, strLength);
+        //             generatedPasswordString = generateUniquePass( 1, updatedString);
+        //             break;
+        //         }
+        //     }
+        // }
 
         if(letterToBeginWith) {
             const regExp = /[a-zA-Z]/g;
@@ -393,12 +398,18 @@ const PasswordGenerator = () => {
     }
 
     const onWordChange = (event) => {
-        const wordLength = event.target.value.length;
-        const allowedLength = Math.round(passLen/3);
-        handleChange();
-        document.getElementById('limitReachedMessage').style['opacity'] = '0';
-        if(wordLength >= allowedLength) {
-            document.getElementById('limitReachedMessage').style['opacity'] = '1';
+        const updatedWord = event.target.value.replaceAll(' ', '')
+        const wordLength = updatedWord.length;
+        if(wordLength != event.target.value.length) {
+            event.target.value = updatedWord;
+        }
+        else {
+            const allowedLength = Math.round(passLen/3);
+            handleChange();
+            document.getElementById('limitReachedMessage').style['opacity'] = '0';
+            if(wordLength >= allowedLength) {
+                document.getElementById('limitReachedMessage').style['opacity'] = '1';
+            }
         }
     }
 
@@ -536,7 +547,7 @@ const PasswordGenerator = () => {
                             </div>
                         </div>
                     </div>
-                    <input type="text" maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text in-option' onChange={(event)=>onWordChange(event)}/>
+                    <input type="text" id="includedWord" maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text in-option' onChange={(event)=>onWordChange(event)}/>
                 </div>
                 <div className="card">
                     <div className='slider-conatiner'>
@@ -564,7 +575,7 @@ const PasswordGenerator = () => {
                         </div>
                     </div>
                 </div>
-                <input type="text" id='includedWord' maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
+                <input type="text" id='includedWordMobile' maxLength={Math.round(passLen/3)} disabled={ !stringToInclude } style={{cursor: stringToInclude ? 'pointer' : 'not-allowed' }} placeholder="Word To Include In Password" className='input-text' onChange={(event)=>onWordChange(event)}/>
             </div>
             { 
                 <span id="limitReachedMessage">It looks like you reached the word limit. Increase the password length to increase the word limit.</span>
