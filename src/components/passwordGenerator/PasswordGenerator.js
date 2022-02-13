@@ -281,7 +281,7 @@ const PasswordGenerator = () => {
         return generatedString;
     }
 
-    const genrateChar = () => {
+    const genrateChar = (number = null) => {
         const optionsArray = [];
         uppercase && optionsArray.push(0)
         symbols && optionsArray.push(1)
@@ -289,7 +289,7 @@ const PasswordGenerator = () => {
         numbers && optionsArray.push(3)
 
         const charToAdd = Math.floor((Math.random() * optionsArray.length));
-        const selectedOption = optionsArray[charToAdd]
+        const selectedOption = typeof number == 'number' ? number : optionsArray[charToAdd];
 
         switch (selectedOption) {
             case 0:
@@ -328,29 +328,65 @@ const PasswordGenerator = () => {
             length -= 1;
         }
 
+        if(uppercase) {
+            const uppercaseString = 'ABCDEFGHIJKLMNOPQRSTUVQXYZ';
+            if(!checkIfExist(uppercaseString, generatedPasswordString)) {
+                const position = Math.floor((Math.random() * generatedPasswordString.length));
+                let newChar = genrateChar(0);
+                while((duplicateChar && generatedPasswordString.includes(newChar)) || (word && word.includes(newChar))) { newChar = genrateChar(0);}
+                const updatedStr = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
+                generatedPasswordString = generateUniquePass(0, updatedStr);
+            }
+        }
+
+        if(symbols) {
+            const symbolsString = `!@#$%^&*(){}[]~.<>/?:;'"|_-+=`;
+            if(!checkIfExist(symbolsString, generatedPasswordString)) {
+                const position = Math.floor((Math.random() * generatedPasswordString.length));
+                let newChar = genrateChar(1);
+                while((duplicateChar && generatedPasswordString.includes(newChar)) || (word && word.includes(newChar))) { newChar = genrateChar(1);}
+                const updatedStr = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
+                generatedPasswordString = generateUniquePass(0, updatedStr);
+            }
+        }
+
+        if(lowercase) {
+            const lowercaseString = 'abcdefghijklmnopqrstuvqxyz';
+            if(!checkIfExist(lowercaseString, generatedPasswordString)) {
+                const position = Math.floor((Math.random() * generatedPasswordString.length));
+                let newChar = genrateChar(2);
+                while((duplicateChar && generatedPasswordString.includes(newChar)) || (word && word.includes(newChar))) { newChar = genrateChar(2);}
+                const updatedStr = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
+                generatedPasswordString = generateUniquePass(0, updatedStr);
+            }
+        }
+
+        if(numbers) {
+            const numbersString = '0123456789';
+            if(!checkIfExist(numbersString, generatedPasswordString)) {
+                const position = Math.floor((Math.random() * generatedPasswordString.length));
+                let newChar = genrateChar(3);
+                while((duplicateChar && generatedPasswordString.includes(newChar)) || (word && word.includes(newChar))) { newChar = genrateChar(3);}
+                const updatedStr = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
+                generatedPasswordString = generateUniquePass(0, updatedStr);
+            }
+        }
         //TODO: Pending condition for similarChar
 
-        // if(duplicateChar) {
-        //     const oldLength = generatedPasswordString.length;
-        //     const updatedString = [...new Set(generatedPasswordString)].toString().replaceAll(',', '');
-        //     const updatedLength = oldLength - updatedString.length
-        //     if(updatedLength > 0) {
-        //         generatedPasswordString = generateUniquePass( updatedLength, updatedString);
-        //     }
-        // }
-
-        // if(sequentialChar) {
-        //     const aphaNumericString = '0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOPQRSTUVQXYZ';
-        //     const strLength = generatedPasswordString.length;
-        //     for(let offset = 0; offset < strLength - 1; offset++ ) {
-        //         const chunk = generatedPasswordString.slice(offset, offset+1);
-        //         if(aphaNumericString.includes(chunk)) {
-        //             const updatedString = generatedPasswordString.slice(0, offset) + generatedPasswordString.slice(offset+1, strLength);
-        //             generatedPasswordString = generateUniquePass( 1, updatedString);
-        //             break;
-        //         }
-        //     }
-        // }
+        if(sequentialChar) {
+               const uppercaseString = 'ABCDEFGHIJKLMNOPQRSTUVQXYZ';
+               const lowercaseString = 'abcdefghijklmnopqrstuvqxyz';
+               const numbersString = '0123456789';
+            const strLength = generatedPasswordString.length;
+            for(let offset = 0; offset < strLength - 1; offset++ ) {
+                const chunk = generatedPasswordString.slice(offset, offset+2);
+                if(uppercaseString.includes(chunk) || lowercaseString.includes(chunk) || numbersString.includes(chunk)) {
+                    const updatedString = generatedPasswordString.slice(0, offset) + generatedPasswordString.slice(offset+1, strLength);
+                    generatedPasswordString = generateUniquePass( 1, updatedString);
+                    break;
+                }
+            }
+        }
 
         if(letterToBeginWith) {
             const regExp = /[a-zA-Z]/g;
@@ -359,6 +395,16 @@ const PasswordGenerator = () => {
             }
         }
         return generatedPasswordString;
+    }
+
+    const checkIfExist = (stringToBeMatchedWith, generatedString ) => {
+        for(let offset = 0; offset < generatedString.length; offset++ ) {
+            if(stringToBeMatchedWith.includes(generatedString[offset]))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     const handleCopy = () => {
@@ -422,9 +468,15 @@ const PasswordGenerator = () => {
 
         if(newVal > 7 && newVal < 51)
         {
-            setPassLen(newVal);
+            passLenHandler(newVal);
             document.getElementById('passwordRange').value = newVal;
         }
+    }
+
+    const passLenHandler = (val) => {
+        document.getElementById('includedWord').value = '';
+        document.getElementById('includedWordMobile').value = '';
+        setPassLen(val);
     }
 
     useEffect(()=>{
@@ -555,7 +607,7 @@ const PasswordGenerator = () => {
                             <div className='balls' onClick={()=>sliderClickHandler(1)}>
                                 <img src={plusIcon}/>
                             </div>
-                            <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
+                            <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>passLenHandler(parseInt(event.target.value))}/>
                             <div className='balls' onClick={()=>sliderClickHandler(-1)}>
                                 <img src={minusIcon}/>
                             </div>
@@ -586,7 +638,7 @@ const PasswordGenerator = () => {
                     <div className='balls' onClick={()=>sliderClickHandler(-1)}>
                         <img src={minusIcon}/>
                     </div>
-                    <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>setPassLen(parseInt(event.target.value))}/>
+                    <input type="range" min="8" max="50" className="slider" id="passwordRange" defaultValue="12" onChange={(event)=>passLenHandler(parseInt(event.target.value))}/>
                     <div className='balls' onClick={()=>sliderClickHandler(1)}>
                         <img src={plusIcon}/>
                     </div>
