@@ -391,7 +391,11 @@ const PasswordGenerator = () => {
         if(letterToBeginWith) {
             const regExp = /[a-zA-Z]/g;
             if(!regExp.test(generatedPasswordString[0])) {
-                generatedPasswordString = generateUniquePass( 1, generatedPasswordString.slice(1,generatedPasswordString.length) );
+                const position = 0;
+                let newChar = genrateChar(1);
+                while((duplicateChar && generatedPasswordString.includes(newChar)) || (word && word.includes(newChar))) { newChar = genrateChar(1);}
+                const updatedStr = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
+                generatedPasswordString = generateUniquePass(0, updatedStr);
             }
         }
         return generatedPasswordString;
