@@ -392,10 +392,9 @@ const PasswordGenerator = () => {
             const regExp = /[a-zA-Z]/g;
             if(!regExp.test(generatedPasswordString[0])) {
                 const position = 0;
-                let newChar = genrateChar(1);
+                let newChar = genrateChar(Math.floor((Math.random() * 2)));
                 while((duplicateChar && generatedPasswordString.includes(newChar)) || (word && word.includes(newChar))) { newChar = genrateChar(1);}
-                const updatedStr = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
-                generatedPasswordString = generateUniquePass(0, updatedStr);
+                generatedPasswordString = generatedPasswordString.slice(0, position) + newChar + generatedPasswordString.slice(position + 1, generatedPasswordString.length);
             }
         }
         return generatedPasswordString;
@@ -411,14 +410,42 @@ const PasswordGenerator = () => {
         return false;
     }
 
+    const fallbackCopyTextToClipboard = (text) => {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            const msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+
     const handleCopy = () => {
         setCopied(true);
-        navigator.clipboard.writeText(generatedPass).then(function() {
+        const text = generatedPass;
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+            navigator.clipboard.writeText(text).then(function() {
             console.log('Async: Copying to clipboard was successful!');
         }, function(err) {
             console.error('Async: Could not copy text: ', err);
         });
-        //Paste the code to copy the password to clipboard here
     }
 
     const handleChange = () => {
