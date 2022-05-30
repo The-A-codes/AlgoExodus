@@ -5,7 +5,7 @@ const PasswordGeneratorFAQ = () => {
 
     const qas = [
         {
-            'question': 'Why should I use password generator ?',
+            'question': 'Why should I use Password Generator ?',
             'answer': 
                 `Because why not! People often use words or numbers or sentences or phrases that mean something to them like a pet’s name, date of birth/year etc. The trouble with this is that people end up with passwords that are easy to guess and crack. GPU-based cracking tools can guess over a hundred million passwords per second like these. So it’s necessary to use our password generator tool that creates the strongest passwords and It’ll take that much time to crack our password of length 16. So don’t you dare risk it. Use Algo Exodus, our password generator to create strong passwords that even the strongest computers and tools can’t crack, Or even think to crack. ;)`,
             'sub': []
